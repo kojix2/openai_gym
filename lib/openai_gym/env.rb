@@ -8,7 +8,7 @@ module  OpenAI
     module_function :make
 
     class Env
-      def initalize(env_name, render:false)
+      def initalize(env_name)
         @gym_stdin, @gym_stdout = Open3.popen2('python', '-u', 'gym.py')
       end
 
