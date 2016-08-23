@@ -1,0 +1,44 @@
+module  OpenAI
+
+  module Gym
+
+    def make(env_name)
+      Env.new(env_name)
+    end
+    module_function :make
+
+    class Env
+      def initalize(env_name, render:false)
+        @gym_stdin, @gym_stdout = Open3.popen2('python', '-u', 'gym.py')
+      end
+
+      def reset
+        puts("reset")
+      end
+
+      def render
+        puts("render")
+      end
+
+      def step(action)
+        puts(action)
+        observation = readline
+        reward = readline.to_f
+        done = (readline == "True")
+        info = readline
+        [observation, reward, done, info]
+      end
+
+      private
+      def puts(_command)
+        @gym_stdin.puts(_command)
+      end
+
+      def readline
+        @gym_stdout.readline.chomp
+      end
+    end
+
+  end #Gym
+
+end #OpenAI
