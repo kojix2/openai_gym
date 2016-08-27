@@ -1,7 +1,6 @@
 require 'openai_gym'
 
 env = OpenAI::Gym.new("Pong-v0")
-
 env.reset(:uint8)
 
 loop do
