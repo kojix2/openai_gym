@@ -40,7 +40,7 @@ module  OpenAI
     def step(action)
       pyputs "step #{action.to_i}"
       observation = get_observation
-      reward = readline
+      reward = readline.chomp.to_f
       done = readline.chomp == "True"
       [observation, reward, done]
     end
