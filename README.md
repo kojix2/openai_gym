@@ -31,3 +31,7 @@ loop do
   end
 end
 ```
+
+## Contributing
+Pull Requests are always welcome.
+(But will you be interested in making serious OpenAI Gym wrapper for Ruby?)
