@@ -1,7 +1,19 @@
 # OpenAI::Gym
 
-Simple [OpenAI Gym](https://gym.openai.com/) interface for Ruby using pipelines.
+Simple [OpenAI Gym](https://gym.openai.com/) interface for Ruby using pipelines. (for fun, not for serious use)
 
+## Instllation
+
+* Install [OpenAI Gym](https://github.com/openai/gym)
+* Install OpenAI::Gym
+```shell
+git clone git://github.com/kojix2/openai_gym.git
+cd openai_gym
+rake build
+rake install
+```
+
+## Usage
 You can run an simulation using the following:
 
 ```ruby
