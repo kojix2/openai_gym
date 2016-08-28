@@ -1,4 +1,5 @@
 # OpenAI::Gym
+[![Gem Version](https://badge.fury.io/rb/openai-gym-ruby.svg)](https://badge.fury.io/rb/openai-gym-ruby)
 
 Simple [OpenAI Gym](https://gym.openai.com/) interface for Ruby using pipelines. (for fun, not for serious use)
 
