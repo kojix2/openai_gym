@@ -7,7 +7,7 @@ puts env.action_space
 
 loop do
   env.render
-  a = [rand]
+  a = [2 * rand - 1.0]
 
   observation, reward, done = env.step(a)
   if done
