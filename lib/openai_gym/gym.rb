@@ -33,12 +33,15 @@ module  OpenAI
     # Step function
     def step(action)
       case action
-      when Fixnum, Float
+      when Fixnum
         pyputs "step discrete"
         pyputs action
+        pyputs "END"
       when Array
         pyputs "step box"
+        # Todo: Multidimensional Arrays
         pyputs action.pack("D*")
+        pyputs "END"
       else
         raise "error #{action.class}"
       end
@@ -53,12 +56,14 @@ module  OpenAI
     def action_space
       pyputs "action_space"
       string = readline.chomp
-      if string[0..7] = "Discrate"
+      if string[0..7] == "Discrete"
         num = string[9..-2].to_i
         Spaces::Discrete.new(num)
+      else string[0..2] == "Box"
+        puts string
+        # Todo: Box
+        # Todo: Spaces.create(Space) class method
       end
-      # Todo Box
-      # Todo Spaces.create(Space) class method
     end
 
     # observation_space

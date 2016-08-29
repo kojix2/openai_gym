@@ -1,6 +1,5 @@
 import gym
 import sys
-import array
 import struct
 import numpy as np
 
@@ -9,8 +8,6 @@ env_name =  sys.stdin.readline().strip()
 env = gym.make(env_name)
 
 npdtype = None
-
-U = array.array("d")
 
 while True:
     line = sys.stdin.readline()
@@ -37,11 +34,20 @@ while True:
     # int or double
     elif command[0:4] == "step":
         space_type = command[5:]
-        action = sys.stdin.readline()
+        flag = None
+        action = ""
+        while flag == None:
+            temp = sys.stdin.readline()
+            if temp == "END\n":
+                flag = 1
+            else:
+                action += temp
+        action = action.rstrip()
+
         if space_type == "discrete":
             action = int(action)
         elif space_type == "box":
-            action = U.fromstring(action)
+            action = np.fromstring(action)
 
         observation, reward, done, info = env.step(action)
         # info is dismissed
