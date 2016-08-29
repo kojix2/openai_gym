@@ -31,12 +31,20 @@ module  OpenAI
     end
 
     # Step function
-    # reterns only three value.
     def step(action)
-      pyputs "step #{action.to_i}"
+      case action
+      when Fixnum, Float
+        pyputs "step discrete"
+        pyputs action
+      when Array
+        pyputs "step box"
+        pyputs action.pack("D*")
+      else
+        raise "error #{action.class}"
+      end
       observation = get_observation
       reward = readline.chomp.to_f
-      done = readline.chomp == "True"
+      done = (readline.chomp == "True")
       info = readline.chomp
       [observation, reward, done, info]
     end
@@ -68,7 +76,7 @@ module  OpenAI
     def readline
       @gym_stdout.readline
     end
-    
+
     def get_observation
       observation = ""
       # to ignore newline characters in binary data
