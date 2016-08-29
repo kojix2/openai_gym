@@ -5,7 +5,7 @@ require 'openai_gym/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "openai-gym-ruby"
-  spec.version       = OpenaiGym::VERSION
+  spec.version       = OpenAI::Gym::VERSION
   spec.authors       = ["kojix2"]
   spec.email         = ["kojix2@users.noreply.github.com"]
 

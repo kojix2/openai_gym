@@ -40,9 +40,13 @@ while True:
         print("END")
         print(reward)
         print(done)
+        print(info)
 
     elif command == "action_space":
-        sys.stderr.write(str(env.action_space) + "\n")
+        print(str(env.action_space))
+
+    elif command == "observation_space":
+        print(str(env.observation_space))
 
     else:
         sys.stderr.write(command + " not known\n")

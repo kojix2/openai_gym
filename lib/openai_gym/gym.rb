@@ -19,11 +19,6 @@ module  OpenAI
       pyputs env_name
     end
 
-    # action_space
-    def action_space
-      pyputs "action_space"
-    end
-
     # Reset the environment
     def reset(nptype)
       pyputs "reset " << nptype.to_s
@@ -36,14 +31,34 @@ module  OpenAI
     end
 
     # Step function
-    # reterns only three value. No info.
+    # reterns only three value.
     def step(action)
       pyputs "step #{action.to_i}"
       observation = get_observation
       reward = readline.chomp.to_f
       done = readline.chomp == "True"
-      [observation, reward, done]
+      info = readline.chomp
+      [observation, reward, done, info]
     end
+
+    # action_space
+    def action_space
+      pyputs "action_space"
+      string = readline.chomp
+      if string[0..7] = "Discrate"
+        num = string[9..-2].to_i
+        Spaces::Discrete.new(num)
+      end
+      # Todo Box
+      # Todo Spaces.create(Space) class method
+    end
+
+    # observation_space
+    def observation_space
+      pyputs "observation_space"
+      puts readline.chomp
+    end
+
 
     private
     def pyputs(_command)

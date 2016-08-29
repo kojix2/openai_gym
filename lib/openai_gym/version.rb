@@ -1,3 +1,5 @@
-module OpenaiGym
-  VERSION = "0.0.1"
+module OpenAI
+  class Gym
+    VERSION = "0.0.1"
+  end
 end
