@@ -21,7 +21,7 @@ $ rake install
 ```
 
 ## Usage
-You can run an simulation using the following:
+You can run a simulation using the following:
 
 ```ruby
 require 'openai_gym'
@@ -42,7 +42,7 @@ end
 ## Contributing
 Pull Requests are always welcome.
 
-(But will you be interested in making serious OpenAI Gym wrapper for Ruby?)
+(But will you be interested in making a serious OpenAI Gym wrapper for Ruby?)
 
 ## Machine Learning in Ruby
 A list of libraries that may be useful for creating your own AI.
