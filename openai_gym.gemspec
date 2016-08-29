@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["kojix2@users.noreply.github.com"]
 
   spec.summary       = %q{OpenAI gym interface for Ruby}
-  spec.description   = %q{OpenAI gym interface for Ruby}
+  spec.description   = %q{OpenAI gym interface for Ruby (for fun, not for serious use)}
   spec.homepage      = "https://github.com/kojix2/openai_gym"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
