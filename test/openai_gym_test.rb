@@ -21,3 +21,13 @@ class OpenAIGymTest < Minitest::Test
     refute_nil @env.step(1)
   end
 end
+
+class OpenAIGymSpacesDiscrete < Minitest::Test
+  def setup
+    @descrete = OpenAI::Gym::Spaces::Discrete.new(5)
+  end
+
+  def test_sample
+    refute_nil  @descrete.sample
+  end
+end
