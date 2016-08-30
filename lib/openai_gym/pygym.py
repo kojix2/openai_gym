@@ -1,6 +1,5 @@
 import gym
 import sys
-import struct
 import numpy as np
 
 env_name =  sys.stdin.readline().strip()
