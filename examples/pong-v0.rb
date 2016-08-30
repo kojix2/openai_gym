@@ -1,5 +1,5 @@
 require 'openai_gym'
-require 'numo/narray'
+#require 'numo/narray'
 
 env = OpenAI::Gym.new("Pong-v0")
 env.reset(:uint8)
@@ -9,7 +9,6 @@ loop do
   a = [1,2,3].sample
   observation, reward, done = env.step(a)
   #p observation.unpack("C*")[1..10]
-  p observation
   if done
     env.reset(:uint8)
   end

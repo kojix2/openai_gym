@@ -100,18 +100,18 @@ module  OpenAI
 
     def get_observation
       obs_packed = read_until_end
-      if defined? Numo::NArray
-        case @nptype
-        when "uint8"
-          Numo::UInt8.from_string(obs_packed)
-        when "float"
-          Numo::DFloat.from_string(obs_packed)
-        else
-          obs_packed
-        end
-      else
-        obs_packed
-      end
+      #if defined? Numo::NArray
+      #  case @nptype
+      #  when "uint8"
+      #    Numo::UInt8.from_string(obs_packed)
+      #  when "float"
+      #    Numo::DFloat.from_string(obs_packed)
+      #  else
+      #    obs_packed
+      #  end
+      #else
+      #  obs_packed
+      #end
     end
 
   end
