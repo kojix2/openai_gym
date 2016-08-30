@@ -24,10 +24,14 @@ end
 
 class OpenAIGymSpacesDiscrete < Minitest::Test
   def setup
-    @descrete = OpenAI::Gym::Spaces::Discrete.new(5)
+    @discrete = OpenAI::Gym::Spaces::Discrete.new(5)
   end
 
   def test_sample
-    refute_nil  @descrete.sample
+    refute_nil  @discrete.sample
+  end
+
+  def test_to_s
+    assert_equal "Discrete(5)", @discrete.to_s
   end
 end
