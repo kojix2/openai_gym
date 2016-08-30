@@ -14,6 +14,9 @@ module OpenAI
           @array.sample
         end
 
+        def to_s
+          "Discrete(#{@array.size})"
+        end
       end
 
     end
