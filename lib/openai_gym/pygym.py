@@ -8,6 +8,10 @@ env = gym.make(env_name)
 
 npdtype = None
 
+def print_with_end(str):
+    print(str)
+    print("END")
+
 while True:
     line = sys.stdin.readline()
     command = line.strip()
@@ -21,9 +25,7 @@ while True:
         npdtype = np.dtype(nptype)
         observation = env.reset()
         observation = observation.astype(npdtype).tostring()
-        print(observation)
-        # to ignore newline characters in binary data
-        print("END")
+        print_with_end(observation)
 
     elif command == "render":
         env.render()
@@ -51,21 +53,19 @@ while True:
         observation, reward, done, info = env.step(action)
         # info is dismissed
         observation = observation.astype(npdtype).tostring()
-        print(observation)
-        # to ignore newline characters in binary data
-        print("END")
-        print(reward)
-        print(done)
-        print(info)
+        print_with_end(observation)
+        print_with_end(reward)
+        print_with_end(done)
+        print_with_end(info)
 
     elif command == "action_space":
-        print(str(env.action_space))
+        print_with_end(str(env.action_space))
 
     elif command == "observation_space":
         obs = env.observation_space
-        print(str(obs))
-        print(str(obs.high))
-        print(str(obs.low))
+        print_with_end(str(obs))
+        print_with_end(str(obs.high))
+        print_with_end(str(obs.low))
 
     else:
         sys.stderr.write(command + " not known\n")

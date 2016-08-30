@@ -48,21 +48,21 @@ module  OpenAI
         raise "error #{action.class}"
       end
       observation = get_observation
-      reward = readline.chomp.to_f
-      done = (readline.chomp == "True")
-      info = readline.chomp
+      reward = read_until_end
+      done = (read_until_end == "True")
+      info = read_until_end
       [observation, reward, done, info]
     end
 
     # action_space
     def action_space
       pyputs "action_space"
-      string = readline.chomp
-      if string[0..7] == "Discrete"
-        num = string[9..-2].to_i
+      space_type = read_until_end
+      if space_type[0..7] == "Discrete"
+        num = space_type[9..-2].to_i
         Spaces::Discrete.new(num)
-      else string[0..2] == "Box"
-        puts string
+      else space_type[0..2] == "Box"
+        puts space_type
         # Todo: Box
         # Todo: Spaces.create(Space) class method
       end
@@ -72,9 +72,9 @@ module  OpenAI
     def observation_space
       pyputs "observation_space"
       # provisional
-      str = readline.chomp
-      high = readline.chomp
-      low = readline.chomp
+      str  = read_until_end
+      high = read_until_end
+      low  = read_until_end
       Spaces::Box.new(str, high, low)
     end
 
@@ -88,15 +88,19 @@ module  OpenAI
       @gym_stdout.readline
     end
 
-    def get_observation
-      obs_packed = ""
-      # to ignore newline characters in binary data
+    # ignore newline characters in binary data
+    def read_until_end
+      str = ""
       temp = ""
-      until (temp = readline)=="END\n"
-        obs_packed << temp
+      until (temp = readline) == "END\n"
+        str << temp
       end
-      obs_packed.chomp!
-      if Numo::NArray.defined?
+      str.chomp!
+    end
+
+    def get_observation
+      obs_packed = read_until_end
+      if defined? Numo::NArray
         case @nptype
         when "uint8"
           Numo::UInt8.from_string(obs_packed)
