@@ -16,12 +16,14 @@ module  OpenAI
       gym_py_path = File.expand_path('../pygym.py', __FILE__)
       @gym_stdin, @gym_stdout, wait_thread = Open3.popen2('python', '-u', gym_py_path)
       ObjectSpace.define_finalizer(self, Gym.kill_subprocess(wait_thread))
+      @nptype = nil
       pyputs env_name
     end
 
     # Reset the environment
     def reset(nptype)
-      pyputs "reset " << nptype.to_s
+      @nptype = nptype.to_s
+      pyputs "reset " << @nptype
       observation = get_observation
     end
 
@@ -87,14 +89,27 @@ module  OpenAI
     end
 
     def get_observation
-      observation = ""
+      obs_packed = ""
       # to ignore newline characters in binary data
       temp = ""
       until (temp = readline)=="END\n"
-        observation << temp
+        obs_packed << temp
       end
-      observation.chomp
+      obs_packed.chomp!
+      if Numo::NArray.defined?
+        case @nptype
+        when "uint8"
+          Numo::UInt8.from_string(obs_packed)
+        when "float"
+          Numo::DFloat.from_string(obs_packed)
+        else
+          obs_packed
+        end
+      else
+        obs_packed
+      end
     end
+
   end
 
 end #OpenAI
