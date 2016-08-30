@@ -66,5 +66,12 @@ while True:
         print_with_end(str(obs.high))
         print_with_end(str(obs.low))
 
+    elif command == "monitor_start":
+        path = sys.stdin.readline().strip()
+        env.monitor.start(path)
+
+    elif command == "monitor_close":
+        env.monitor.close()
+
     else:
         sys.stderr.write(command + " not known\n")

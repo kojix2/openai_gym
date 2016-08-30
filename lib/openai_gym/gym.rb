@@ -78,6 +78,16 @@ module  OpenAI
       Spaces::Box.new(str, high, low)
     end
 
+    # env.monitor.start(path)
+    def monitor_start(path)
+      pyputs "monitor_start"
+      pyputs path
+    end
+
+    # env.monitor.close()
+    def monitor_close
+      pyputs "monitor_close"
+    end
 
     private
     def pyputs(_command)
