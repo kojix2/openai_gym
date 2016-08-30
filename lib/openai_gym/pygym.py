@@ -51,7 +51,6 @@ while True:
             action = np.fromstring(action)
 
         observation, reward, done, info = env.step(action)
-        # info is dismissed
         observation = observation.astype(npdtype).tostring()
         print_with_end(observation)
         print_with_end(reward)
