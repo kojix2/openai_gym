@@ -69,7 +69,11 @@ module  OpenAI
     # observation_space
     def observation_space
       pyputs "observation_space"
-      puts readline.chomp
+      # provisional
+      str = readline.chomp
+      high = readline.chomp
+      low = readline.chomp
+      Spaces::Box.new(str, high, low)
     end
 
 

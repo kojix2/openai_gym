@@ -7,12 +7,16 @@ module OpenAI
 
       class Box 
 
-        # Box(-1.0, 1.0, [3,4]) # low and high are scalars, and shape
-        # Box(
-        def initialize(num, low, high, shape)
+        def initialize(str,high,low)
+          @str = str
+          @high = high
+          @low = low
         end
 
-        def sample
+        attr_reader :high, :low
+
+        def to_s
+          @str
         end
 
       end

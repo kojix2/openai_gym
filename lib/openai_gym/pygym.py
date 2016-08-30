@@ -62,7 +62,10 @@ while True:
         print(str(env.action_space))
 
     elif command == "observation_space":
-        print(str(env.observation_space))
+        obs = env.observation_space
+        print(str(obs))
+        print(str(obs.high))
+        print(str(obs.low))
 
     else:
         sys.stderr.write(command + " not known\n")

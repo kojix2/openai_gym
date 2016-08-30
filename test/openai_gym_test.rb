@@ -35,3 +35,40 @@ class OpenAIGymSpacesDiscrete < Minitest::Test
     assert_equal "Discrete(5)", @discrete.to_s
   end
 end
+
+class OpenAIGymSpacesBox < Minitest::Test
+  def setup
+    @box = OpenAI::Gym::Spaces::Box.new("Sleeping cat", "10", "0")
+  end
+
+  def test_to_s
+    assert_equal "Sleeping cat", @box.to_s
+  end
+
+  def test_high
+    assert_equal "10", @box.high
+  end
+
+  def test_low
+    assert_equal "0", @box.low
+  end
+end
+
+class OpenAIGymSpacesBox2 < Minitest::Test
+  def setup
+    @env = OpenAI::Gym.new("CartPole-v0")
+    @box = @env.observation_space
+  end
+
+  def test_to_s
+    assert_equal "Box(4,)", @box.to_s
+  end
+
+  def test_high
+    assert_equal "[  4.80000000e+00   3.40282347e+38   4.18879020e-01   3.40282347e+38]", @box.high
+  end
+
+  def test_low
+    assert_equal "[ -4.80000000e+00  -3.40282347e+38  -4.18879020e-01  -3.40282347e+38]", @box.low
+  end
+end
