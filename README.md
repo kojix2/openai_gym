@@ -27,12 +27,14 @@ You can run a simulation using the following:
 require 'openai_gym'
 
 env = OpenAI::Gym.new("Pong-v0")
-env.reset(:uint8)
+env.reset(:uint8) # numpy data type
 
 loop do
   env.render
   a = [1,2,3].sample
   observation, reward, done = env.step(a)
+  # observation is binary string.
+  # observation.unpack("C*")
   if done
     env.reset(:uint8)
   end
