@@ -1,5 +1,10 @@
 sudo: false
-language: ruby
+python:
+  - 2.7
+  - 3.5
+install:
+  - pip install --user gym
+  - pip install --user gym[atari]
 rvm:
   - 2.3.1
 before_install: gem install bundler -v 1.12.5
